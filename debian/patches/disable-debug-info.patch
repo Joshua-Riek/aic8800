@@ -1,0 +1,151 @@
+From 0c48b5823a20f50d4732e41be5552540059ca80d Mon Sep 17 00:00:00 2001
+From: Joshua Riek <jjriek@verizon.net>
+Date: Tue, 4 Jun 2024 16:59:46 -0400
+Subject: [PATCH] disable debug info
+
+---
+ src/PCIE/driver_fw/driver/aic8800/aic8800_fdrv/rwnx_main.c      | 2 +-
+ src/SDIO/driver_fw/driver/aic8800/aic8800_fdrv/rwnx_main.c      | 2 +-
+ .../mod/vendor/wifi_driver/aic/aic8800/aic8800_fdrv/rwnx_main.c | 2 +-
+ .../net/wireless/rockchip_wlan/aic8800/aic8800_fdrv/rwnx_main.c | 2 +-
+ .../net/wireless/rockchip_wlan/aic8800/aic8800_fdrv/rwnx_main.c | 2 +-
+ src/USB/driver_fw/drivers/aic8800/aic8800_fdrv/rwnx_main.c      | 2 +-
+ .../driver_fw/drivers/aic8800/aic_load_fw/aic_bluetooth_main.c  | 2 +-
+ .../drivers/net/wireless/aic8800/aic8800_fdrv/rwnx_main.c       | 2 +-
+ .../net/wireless/aic8800/aic_load_fw/aic_bluetooth_main.c       | 2 +-
+ .../wifi/drv/usb_aic8800d/aic8800/aic8800_fdrv/rwnx_main.c      | 2 +-
+ 10 files changed, 10 insertions(+), 10 deletions(-)
+
+diff --git a/src/PCIE/driver_fw/driver/aic8800/aic8800_fdrv/rwnx_main.c b/src/PCIE/driver_fw/driver/aic8800/aic8800_fdrv/rwnx_main.c
+index a787214..5123584 100644
+--- a/src/PCIE/driver_fw/driver/aic8800/aic8800_fdrv/rwnx_main.c
++++ b/src/PCIE/driver_fw/driver/aic8800/aic8800_fdrv/rwnx_main.c
+@@ -509,7 +509,7 @@ static const int rwnx_hwq2uapsd[NL80211_NUM_ACS] = {
+ #endif
+ 
+ extern uint8_t scanning;
+-int aicwf_dbg_level = LOGERROR|LOGINFO|LOGDEBUG|LOGTRACE;
++int aicwf_dbg_level = LOGERROR;
+ module_param(aicwf_dbg_level, int, 0660);
+ int testmode = 0;
+ int adap_test = 0;
+diff --git a/src/SDIO/driver_fw/driver/aic8800/aic8800_fdrv/rwnx_main.c b/src/SDIO/driver_fw/driver/aic8800/aic8800_fdrv/rwnx_main.c
+index dc8bc5a..29f86da 100644
+--- a/src/SDIO/driver_fw/driver/aic8800/aic8800_fdrv/rwnx_main.c
++++ b/src/SDIO/driver_fw/driver/aic8800/aic8800_fdrv/rwnx_main.c
+@@ -503,7 +503,7 @@ static const int rwnx_hwq2uapsd[NL80211_NUM_ACS] = {
+ 
+ 
+ extern uint8_t scanning;
+-int aicwf_dbg_level = LOGERROR|LOGINFO|LOGDEBUG|LOGTRACE;
++int aicwf_dbg_level = LOGERROR;
+ module_param(aicwf_dbg_level, int, 0660);
+ int testmode = 0;
+ char aic_fw_path[200];
+diff --git a/src/SDIO/patch/for_Amlogic/905x4/Android11/mod/vendor/wifi_driver/aic/aic8800/aic8800_fdrv/rwnx_main.c b/src/SDIO/patch/for_Amlogic/905x4/Android11/mod/vendor/wifi_driver/aic/aic8800/aic8800_fdrv/rwnx_main.c
+index a5a1a04..bc6ad4f 100644
+--- a/src/SDIO/patch/for_Amlogic/905x4/Android11/mod/vendor/wifi_driver/aic/aic8800/aic8800_fdrv/rwnx_main.c
++++ b/src/SDIO/patch/for_Amlogic/905x4/Android11/mod/vendor/wifi_driver/aic/aic8800/aic8800_fdrv/rwnx_main.c
+@@ -489,7 +489,7 @@ static const int rwnx_hwq2uapsd[NL80211_NUM_ACS] = {
+ };
+ 
+ extern uint8_t scanning;
+-int aicwf_dbg_level = LOGERROR|LOGINFO|LOGDEBUG|LOGTRACE;
++int aicwf_dbg_level = LOGERROR;
+ module_param(aicwf_dbg_level, int, 0660);
+ int testmode = 0;
+ char aic_fw_path[200];
+diff --git a/src/SDIO/patch/for_Rockchip/3128/Android4_4/mod/kernel/drivers/net/wireless/rockchip_wlan/aic8800/aic8800_fdrv/rwnx_main.c b/src/SDIO/patch/for_Rockchip/3128/Android4_4/mod/kernel/drivers/net/wireless/rockchip_wlan/aic8800/aic8800_fdrv/rwnx_main.c
+index 88e549b..4a27ed2 100644
+--- a/src/SDIO/patch/for_Rockchip/3128/Android4_4/mod/kernel/drivers/net/wireless/rockchip_wlan/aic8800/aic8800_fdrv/rwnx_main.c
++++ b/src/SDIO/patch/for_Rockchip/3128/Android4_4/mod/kernel/drivers/net/wireless/rockchip_wlan/aic8800/aic8800_fdrv/rwnx_main.c
+@@ -502,7 +502,7 @@ static const int rwnx_hwq2uapsd[NL80211_NUM_ACS] = {
+ 
+ 
+ extern uint8_t scanning;
+-int aicwf_dbg_level = LOGERROR|LOGINFO;
++int aicwf_dbg_level = LOGERROR;
+ module_param(aicwf_dbg_level, int, 0660);
+ int testmode = 0;
+ char aic_fw_path[200];
+diff --git a/src/SDIO/patch/for_Rockchip/3326/Android8/mod/kernel/drivers/net/wireless/rockchip_wlan/aic8800/aic8800_fdrv/rwnx_main.c b/src/SDIO/patch/for_Rockchip/3326/Android8/mod/kernel/drivers/net/wireless/rockchip_wlan/aic8800/aic8800_fdrv/rwnx_main.c
+index 3323d35..78616aa 100644
+--- a/src/SDIO/patch/for_Rockchip/3326/Android8/mod/kernel/drivers/net/wireless/rockchip_wlan/aic8800/aic8800_fdrv/rwnx_main.c
++++ b/src/SDIO/patch/for_Rockchip/3326/Android8/mod/kernel/drivers/net/wireless/rockchip_wlan/aic8800/aic8800_fdrv/rwnx_main.c
+@@ -502,7 +502,7 @@ static const int rwnx_hwq2uapsd[NL80211_NUM_ACS] = {
+ 
+ 
+ extern uint8_t scanning;
+-int aicwf_dbg_level = LOGERROR|LOGINFO|LOGDEBUG|LOGTRACE;
++int aicwf_dbg_level = LOGERROR;
+ module_param(aicwf_dbg_level, int, 0660);
+ int testmode = 0;
+ char aic_fw_path[200];
+diff --git a/src/USB/driver_fw/drivers/aic8800/aic8800_fdrv/rwnx_main.c b/src/USB/driver_fw/drivers/aic8800/aic8800_fdrv/rwnx_main.c
+index ea11b22..f2994af 100644
+--- a/src/USB/driver_fw/drivers/aic8800/aic8800_fdrv/rwnx_main.c
++++ b/src/USB/driver_fw/drivers/aic8800/aic8800_fdrv/rwnx_main.c
+@@ -521,7 +521,7 @@ extern uint8_t p2p_working;
+ struct semaphore aicwf_deinit_sem;
+ atomic_t aicwf_deinit_atomic;
+ 
+-int aicwf_dbg_level = LOGERROR|LOGINFO;
++int aicwf_dbg_level = LOGERROR;
+ module_param(aicwf_dbg_level, int, 0660);
+ 
+ int testmode = 0;
+diff --git a/src/USB/driver_fw/drivers/aic8800/aic_load_fw/aic_bluetooth_main.c b/src/USB/driver_fw/drivers/aic8800/aic_load_fw/aic_bluetooth_main.c
+index be05052..69f23f0 100644
+--- a/src/USB/driver_fw/drivers/aic8800/aic_load_fw/aic_bluetooth_main.c
++++ b/src/USB/driver_fw/drivers/aic8800/aic_load_fw/aic_bluetooth_main.c
+@@ -20,7 +20,7 @@ int adap_test = 0;
+ char paringid[100];
+ int n_para = 1;
+ int ble_scan_wakeup_reboot_time = 1000;
+-int aicwf_dbg_level = LOGERROR|LOGINFO|LOGDEBUG|LOGTRACE;
++int aicwf_dbg_level = LOGERROR;
+ int flash_erase_len = 0x400000;
+ uint32_t ad_data_filter_mask = 0;
+ uint32_t gpio_num = 2;//default select gpiob2 for fw_wakeup_host
+diff --git a/src/USB/patch/for_Allwinner/A40/Android7/patch/mod/lichee/linux-3.10/drivers/net/wireless/aic8800/aic8800_fdrv/rwnx_main.c b/src/USB/patch/for_Allwinner/A40/Android7/patch/mod/lichee/linux-3.10/drivers/net/wireless/aic8800/aic8800_fdrv/rwnx_main.c
+index 1750604..974d1ae 100644
+--- a/src/USB/patch/for_Allwinner/A40/Android7/patch/mod/lichee/linux-3.10/drivers/net/wireless/aic8800/aic8800_fdrv/rwnx_main.c
++++ b/src/USB/patch/for_Allwinner/A40/Android7/patch/mod/lichee/linux-3.10/drivers/net/wireless/aic8800/aic8800_fdrv/rwnx_main.c
+@@ -528,7 +528,7 @@ extern uint8_t p2p_working;
+ struct semaphore aicwf_deinit_sem;
+ atomic_t aicwf_deinit_atomic;
+ 
+-int aicwf_dbg_level = LOGERROR|LOGINFO;
++int aicwf_dbg_level = LOGERROR;
+ module_param(aicwf_dbg_level, int, 0660);
+ 
+ int testmode = 0;
+diff --git a/src/USB/patch/for_Allwinner/A40/Android7/patch/mod/lichee/linux-3.10/drivers/net/wireless/aic8800/aic_load_fw/aic_bluetooth_main.c b/src/USB/patch/for_Allwinner/A40/Android7/patch/mod/lichee/linux-3.10/drivers/net/wireless/aic8800/aic_load_fw/aic_bluetooth_main.c
+index 3062147..f8ae667 100644
+--- a/src/USB/patch/for_Allwinner/A40/Android7/patch/mod/lichee/linux-3.10/drivers/net/wireless/aic8800/aic_load_fw/aic_bluetooth_main.c
++++ b/src/USB/patch/for_Allwinner/A40/Android7/patch/mod/lichee/linux-3.10/drivers/net/wireless/aic8800/aic_load_fw/aic_bluetooth_main.c
+@@ -18,7 +18,7 @@ int adap_test = 0;
+ char paringid[100];
+ int n_para = 1;
+ int ble_scan_wakeup_reboot_time = 1000;
+-int aicwf_dbg_level = LOGERROR|LOGINFO|LOGDEBUG|LOGTRACE;
++int aicwf_dbg_level = LOGERROR;
+ uint32_t ad_data_filter_mask = 0;
+ 
+ module_param(aicwf_dbg_level, int, 0660);
+diff --git a/src/USB/patch/for_Hi/352/Android9/mod/device/hisilicon/bigfish/sdk/source/component/wifi/drv/usb_aic8800d/aic8800/aic8800_fdrv/rwnx_main.c b/src/USB/patch/for_Hi/352/Android9/mod/device/hisilicon/bigfish/sdk/source/component/wifi/drv/usb_aic8800d/aic8800/aic8800_fdrv/rwnx_main.c
+index 91f681a..ba1a468 100644
+--- a/src/USB/patch/for_Hi/352/Android9/mod/device/hisilicon/bigfish/sdk/source/component/wifi/drv/usb_aic8800d/aic8800/aic8800_fdrv/rwnx_main.c
++++ b/src/USB/patch/for_Hi/352/Android9/mod/device/hisilicon/bigfish/sdk/source/component/wifi/drv/usb_aic8800d/aic8800/aic8800_fdrv/rwnx_main.c
+@@ -497,7 +497,7 @@ extern uint8_t p2p_working;
+ struct semaphore aicwf_deinit_sem;
+ atomic_t aicwf_deinit_atomic;
+ 
+-int aicwf_dbg_level = LOGERROR|LOGINFO;
++int aicwf_dbg_level = LOGERROR;
+ module_param(aicwf_dbg_level, int, 0660);
+ int testmode = 0;
+ char aic_fw_path[200];
+-- 
+2.25.1
+
